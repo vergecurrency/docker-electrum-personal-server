@@ -1,13 +1,13 @@
 version: "3"
 
 services:
-  bitcoind:
+  verged:
     build:
       context: .
-      dockerfile: Dockerfile.bitcoind
+      dockerfile: Dockerfile.verged
     restart: always
     volumes:
-      - ./bitcoin:/root/.bitcoin
+      - ./verge:/root/.verge
     networks:
       - host
   eps:
@@ -18,10 +18,10 @@ services:
       - 127.0.0.1:50002:50002
     restart: unless-stopped
     volumes:
-      - ./bitcoin:/root/.bitcoin
+      - ./verge:/root/.verge
     networks:
       - host
     links:
-      - bitcoind
+      - verged
 networks:
   host:

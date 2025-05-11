@@ -1,2 +1,2 @@
-bitcoin/*
-!bitcoin/bitcoin.conf
+verge/*
+!verge/verge.conf

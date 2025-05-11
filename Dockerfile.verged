@@ -1,0 +1,23 @@
+FROM ubuntu
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt update -y && \
+    apt install -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" -y \
+    build-essential libtool autotools-dev automake pkg-config bsdmainutils python3 \
+    libevent-dev libboost-dev libboost-system-dev libboost-filesystem-dev \
+    libboost-test-dev libsqlite3-dev libminiupnpc-dev libnatpmp-dev libzmq3-dev \
+    wget unzip
+
+RUN mkdir /verge
+WORKDIR /verge
+
+RUN wget https://github.com/vergecurrency/verge/releases/download/v7.11.0/verge-ubuntu22.zip
+
+RUN unzip verge-ubuntu22.zip && \
+    rm verge-ubuntu22.zip && \
+    chmod +x verge-ubuntu22/* && \
+    mv verge-ubuntu22/* /usr/bin/
+
+ADD start_verge_core.sh .
+CMD ["./start_verge_core.sh"]
