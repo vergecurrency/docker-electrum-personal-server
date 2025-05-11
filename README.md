@@ -11,7 +11,7 @@
 ## **Installation**
 Clone the dockerised electrum personal server repo.
 ```sh
-git clone https://github.com/BitLaunchIO/docker-electrum-personal-server.git
+git clone https://github.com/vergecurrency/docker-electrum-personal-server.git
 ```
 
 Install docker and docker-compose:
@@ -67,15 +67,20 @@ mywallet = xpubkey
 myotherwallet = zpubkey
 ```
 
-Bitcoin core will need some nodes to be able to sync to the blockchain. Add some nodes  by editing the `docker-eps/bitcoin/bitcoin.conf` file. You can either google some bitcoin full-node onion addresses or add some from the wiki:
+Verge core will need some nodes to be able to sync to the blockchain. Add some nodes  by editing the `docker-eps/verge/verge.conf` file. You can either google some verge full-node onion addresses or add some from the blockchain explorer:
 
-https://en.bitcoin.it/wiki/Fallback_Nodes#Tor_nodes
+https://verge-blockchain.info/peers
 
-https://en.bitcoinwiki.org/wiki/Fallback_Nodes#Tor_nodes
 
 ```
-addnode=btcnode1.onion
-addnode=btcnode2.onion
+addnode=onsldk6lgqd3panor2mg7vjlxrno7zd6oc2oij2fziqtpcma6bkwkgid.onion
+addnode=rg26lmazggizrw7hhesrav2mvzkvuftyaqpkpldxl6ywuscuhh3lrsyd.onion
+addnode=xuet3co7iz2qcojnc6peuvm5gqkvn6gn6dzbvhsljurtbt2kpokxqbad.onion
+addnode=gnxxjtvdww5u3ko5a2irehzxc7f7fsccrtqkz2t6o2juflqxevznclid.onion
+addnode=accu36f6dg5e54axjcytitblk4r736uenuvs6fzbp77m3akfxztpeqqd.onion
+addnode=4wqkmkldxngbemhlebywhsjzmlqwbveksqbadcjj7ga6ctbrrcs6q3id.onion
+addnode=tjupazrghiqqotro6yzlsla3zkxe6vfc4odpozgcft4bv5a6xrpnlbqd.onion
+addnode=segvmars637oxuy224gclsupzws7567vcuqonqx24j2iephrer2v4ryd.onion
 ```
 
 ---
@@ -91,14 +96,14 @@ docker-compose up --build -d
 
 Once the <u>bitcoind</u> container is running, you will need to create a wallet. EPS will import all your electrum addresses this wallet and check for incoming transactions to the wallet.
 ```sh
-docker exec -t docker-eps_bitcoind_1 bitcoin-cli createwallet electrumpersonalserver
+docker exec -t docker-eps_verged_1 verge-cli createwallet electrumpersonalserver
 ```
 
 ---
 ## **Connecting Electrum to EPS**
 To connect Electrum to EPS, you will need the onion address.
 ```sh
-cat /var/lib/tor/bitcoin-service/hostname
+cat /var/lib/tor/verge-service/hostname
 ```
 
 Start Electrum with this command to make sure it only connects to your EPS and routes all traffic over your Tor proxy.
